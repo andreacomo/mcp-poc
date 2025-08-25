@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: mcp-server
+
+  main:
+    banner-mode: OFF
+
+# disabling logging for STDOUT because breaks JSON-RPC STDIO communication
+logging:
+  pattern:
+    console:

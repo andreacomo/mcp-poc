@@ -5,6 +5,15 @@ spring:
   main:
     banner-mode: OFF
 
+  ai:
+    mcp:
+      server:
+        stdio: true
+        capabilities:
+          completion: false
+          prompt: false
+          resource: false
+
 # disabling logging for STDOUT because breaks JSON-RPC STDIO communication
 logging:
   pattern:

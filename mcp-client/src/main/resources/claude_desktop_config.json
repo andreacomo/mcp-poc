@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "spring-ai-mcp-weather": {
+      "command": "/Users/andreacomo/.sdkman/candidates/java/current/bin/java",
+      "args": [
+        "-jar",
+        "/Users/andreacomo/Dev/git/pocs/mcp-poc/mcp-server/target/mcp-server-1.0.0-SNAPSHOT.jar"
+      ]
+    }
+  }
+}

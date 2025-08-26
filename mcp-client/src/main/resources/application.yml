@@ -1,10 +1,18 @@
 spring:
   application:
     name: mcp-client
+  main:
+    web-application-type: NONE
 
   ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
     mcp:
       client:
         name: mcp-client
         stdio:
           servers-configuration: classpath:claude_desktop_config.json
+
+logging:
+  level:
+    org.springframework.ai.model.tool.DefaultToolCallingManager: DEBUG

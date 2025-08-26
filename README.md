@@ -1,6 +1,6 @@
 # Model Context Protocol POC
 
-This project aims to play with MCP and Spring AI.
+This project aims to play with [MCP](https://modelcontextprotocol.io/) and [Spring AI](https://docs.spring.io/spring-ai/reference/index.html).
 
 This is a Maven Multi Module project
 
@@ -56,9 +56,15 @@ Now you can explore the MPC server
 
 # MCP Client
 
-The client just connects to the MCP servers defined in [`claude_desktop_config.json`](mcp-client/src/main/resources/claude_desktop_config.json)
+The client is basically a **command line _chat_** based on OpenAI: thanks to Spring AI and MCP integration, the client connects to the MCP servers defined in [`claude_desktop_config.json`](mcp-client/src/main/resources/claude_desktop_config.json)
 and create the **clients automatically** for each configured server.
 
-> Please note that the `claude_desktop_config.json` contains **absolute paths**
+> Please note that the `claude_desktop_config.json` contains **absolute paths** because is using STDIO communication:
+> this type of communication requires the client to start the server, so the project **must me built first**!
+> ```shell
+> mvn package
+> ```
 
-**The client starts and list the available tools**, then exit.
+> The client requires the OpenAI key, provided as env variable `OPENAI_API_KEY`.
+
+**The client starts and list the available tools**, then is ready to chat.

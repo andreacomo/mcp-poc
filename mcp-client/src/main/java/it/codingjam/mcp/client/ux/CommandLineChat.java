@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 import java.util.Scanner;
@@ -36,23 +37,25 @@ public class CommandLineChat implements CommandLineRunner {
                 .map(McpSchema.Tool::name)
                 .toList());
 
-        onNewLine(chatService::chat);
+        onNewRequest(chatService::chat);
     }
 
-    private void onNewLine(Function<String, String> answerRequest) {
+    private void onNewRequest(Function<String, Flux<String>> answerRequest) {
         System.out.println("Scrivi qualcosa (CTRL+D per terminare):");
         System.out.print(PREFIX_REQ);
         try (Scanner scanner = new Scanner(System.in)) {
             while (scanner.hasNextLine()) {
                 String request = scanner.nextLine();
 
-                String response = answerRequest.apply(request);
-
-                System.out.print(PREFIX_RESP);
-                System.out.println(response);
-
-                System.out.println();
-                System.out.print(PREFIX_REQ);
+                answerRequest.apply(request)
+                        .doFirst(() -> System.out.print(PREFIX_RESP))
+                        .doOnNext(System.out::print)
+                        .doFinally(s -> {
+                            System.out.println();
+                            System.out.println();
+                            System.out.print(PREFIX_REQ);
+                        })
+                        .subscribe();
             }
         }
     }

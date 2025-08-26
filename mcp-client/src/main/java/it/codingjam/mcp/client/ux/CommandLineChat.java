@@ -41,7 +41,7 @@ public class CommandLineChat implements CommandLineRunner {
     }
 
     private void onNewRequest(Function<String, Flux<String>> answerRequest) {
-        System.out.println("Scrivi qualcosa (CTRL+D per terminare):");
+        System.out.println("Scrivi qualcosa (CTRL+C per terminare):");
         System.out.print(PREFIX_REQ);
         try (Scanner scanner = new Scanner(System.in)) {
             while (scanner.hasNextLine()) {

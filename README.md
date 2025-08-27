@@ -52,7 +52,9 @@ Now you can explore the MPC server
       }
    }
   ```
-* Try to ask Claude "what's the forecast for tomorrow in <your city>?". Claude will be capable of understand that need to retrieve geo info to give you the answer (using both tools)
+* Try to ask Claude "what's the forecast for tomorrow in [your city name]?". Claude will be capable of understand that need to retrieve geo info to give you the answer (using both tools)
+
+  > Please note that the prompt is bound to Italy cities
 
 # MCP Client
 
